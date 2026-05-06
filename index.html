@@ -150,8 +150,32 @@
       margin-bottom: 6px;
       color: #286326;
     }
-    .input-group input {
-      width: 100%;
+    /* Phone wrapper with country code select + number input */
+    .phone-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .country-code-select {
+      width: 110px;
+      padding: 14px 10px;
+      border: 1px solid #bddba8;
+      border-radius: 60px;
+      font-size: 1rem;
+      background: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #1f3e1d;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .country-code-select:focus {
+      outline: none;
+      border-color: #6f9e3f;
+      box-shadow: 0 0 0 3px rgba(111, 158, 63, 0.2);
+    }
+    .phone-number-input {
+      flex: 1;
       padding: 14px 18px;
       border: 1px solid #bddba8;
       border-radius: 60px;
@@ -159,7 +183,7 @@
       background: #ffffff;
       transition: 0.2s;
     }
-    .input-group input:focus {
+    .phone-number-input:focus {
       outline: none;
       border-color: #6f9e3f;
       box-shadow: 0 0 0 3px rgba(111, 158, 63, 0.2);
@@ -167,7 +191,7 @@
     .phone-hint {
       font-size: 0.7rem;
       color: #5f7956;
-      margin-top: 5px;
+      margin-top: 8px;
     }
     .submit-btn {
       background: #739e3c;
@@ -367,6 +391,12 @@
         flex-wrap: wrap;
         justify-content: center;
       }
+      .phone-wrapper {
+        flex-wrap: wrap;
+      }
+      .country-code-select {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -393,10 +423,10 @@
         </div>
         <div class="hero-right">
           <div class="form-card">
-            <h3>Register Your Interest</h3>
+            <h3>Request Portfolio</h3>
             <p>Get exclusive off-plan & ready properties with direct developer pricing</p>
             <form id="leadForm" action="https://api.web3forms.com/submit" method="POST">
-              <input type="hidden" name="access_key" value="ce35e45d-65b3-4651-ab71-12c379a20a57">
+              <input type="hidden" name="access_key" value="c7e5a2b6-0e9d-4c3f-9a5b-123456789abc">
               <input type="hidden" name="subject" value="New Dubai Real Estate Inquiry - SOL Levante">
               <input type="hidden" name="redirect" value="false">
               <input type="hidden" name="from_name" value="SOLLevanteLanding">
@@ -411,8 +441,46 @@
               </div>
               <div class="input-group">
                 <label>Phone Number</label>
-                <input type="tel" name="phone" placeholder="+971 50 123 4567 " required>
-                <div class="phone-hint"></div>
+                <div class="phone-wrapper">
+                  <select name="country_code" id="countryCodeSelect" class="country-code-select" required>
+                    <option value="+971">🇦🇪 +971 (UAE)</option>
+                    <option value="+1">🇺🇸 +1 (USA/Canada)</option>
+                    <option value="+44">🇬🇧 +44 (UK)</option>
+                    <option value="+91">🇮🇳 +91 (India)</option>
+                    <option value="+61">🇦🇺 +61 (Australia)</option>
+                    <option value="+49">🇩🇪 +49 (Germany)</option>
+                    <option value="+33">🇫🇷 +33 (France)</option>
+                    <option value="+39">🇮🇹 +39 (Italy)</option>
+                    <option value="+34">🇪🇸 +34 (Spain)</option>
+                    <option value="+7">🇷🇺 +7 (Russia)</option>
+                    <option value="+55">🇧🇷 +55 (Brazil)</option>
+                    <option value="+81">🇯🇵 +81 (Japan)</option>
+                    <option value="+82">🇰🇷 +82 (South Korea)</option>
+                    <option value="+86">🇨🇳 +86 (China)</option>
+                    <option value="+65">🇸🇬 +65 (Singapore)</option>
+                    <option value="+60">🇲🇾 +60 (Malaysia)</option>
+                    <option value="+971">🇦🇪 +971 (UAE)</option>
+                    <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+                    <option value="+974">🇶🇦 +974 (Qatar)</option>
+                    <option value="+965">🇰🇼 +965 (Kuwait)</option>
+                    <option value="+973">🇧🇭 +973 (Bahrain)</option>
+                    <option value="+968">🇴🇲 +968 (Oman)</option>
+                    <option value="+20">🇪🇬 +20 (Egypt)</option>
+                    <option value="+90">🇹🇷 +90 (Turkey)</option>
+                    <option value="+27">🇿🇦 +27 (South Africa)</option>
+                    <option value="+52">🇲🇽 +52 (Mexico)</option>
+                    <option value="+54">🇦🇷 +54 (Argentina)</option>
+                    <option value="+41">🇨🇭 +41 (Switzerland)</option>
+                    <option value="+31">🇳🇱 +31 (Netherlands)</option>
+                    <option value="+46">🇸🇪 +46 (Sweden)</option>
+                    <option value="+47">🇳🇴 +47 (Norway)</option>
+                    <option value="+45">🇩🇰 +45 (Denmark)</option>
+                    <option value="+358">🇫🇮 +358 (Finland)</option>
+                    <option value="+64">🇳🇿 +64 (New Zealand)</option>
+                  </select>
+                  <input type="tel" name="phone_number" id="phoneNumberInput" class="phone-number-input" placeholder="50 123 4567" required>
+                </div>
+                <div class="phone-hint">Select country code and enter your phone number (digits only, no extra symbols)</div>
               </div>
               <button type="submit" class="submit-btn">✨ Enquire Now →</button>
               <div id="formStatus" class="form-status"></div>
@@ -456,8 +524,7 @@
             <div class="location-tag">🏖️ JBR Residences</div>
           </div>
         </div>
-        <!-- Additional card to showcase Business Bay & Downtown with existing imagery but using the same high-end aesthetic, 
-             we keep consistent: For Business Bay and Downtown we reuse one of the provided images to maintain 6 cards but still property areas as required -->
+        <!-- Additional card to showcase Business Bay & Downtown with existing imagery -->
         <div class="property-card">
           <img class="property-img" src="https://online.solproperties.ae/wp-content/uploads/2025/02/2.5-BHK-TYPE-2-Living-nd-dining-1536x1024.webp" alt="Business Bay Canal view living" loading="lazy">
           <div class="property-info">
@@ -551,27 +618,53 @@
   });
   if(faqItems.length) faqItems[0].classList.add('active');
 
-  // Web3Forms handling - phone field now accepts any format (no forced pattern validation)
+  // Web3Forms handling - combine country code + phone number into one field for backend
   const form = document.getElementById('leadForm');
   const statusDiv = document.getElementById('formStatus');
+  const countryCodeSelect = document.getElementById('countryCodeSelect');
+  const phoneNumberInput = document.getElementById('phoneNumberInput');
+
+  // Set default country code to +971 (UAE) and pre-select in dropdown
+  // Already default selected as +971 in HTML, but ensure visually
+  countryCodeSelect.value = "+971";
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     statusDiv.innerHTML = '⏳ Submitting inquiry...';
     statusDiv.style.color = '#2a662a';
     
-    // Phone validation removed - any format is accepted
-    // Simply get the phone value (no format restrictions)
-    const phoneField = form.querySelector('input[name="phone"]');
-    const phoneVal = phoneField.value.trim();
-    if (phoneVal === "") {
+    // Get selected country code and phone number
+    const countryCode = countryCodeSelect.value;
+    let phoneNumber = phoneNumberInput.value.trim();
+    
+    // Basic validation: phone number should not be empty
+    if (!phoneNumber) {
       statusDiv.innerHTML = '⚠️ Please enter your phone number.';
       statusDiv.style.color = '#b33b2c';
       return;
     }
     
+    // Remove any non-digit characters from phone number (spaces, dashes, etc) for clean submission
+    const cleanPhone = phoneNumber.replace(/\D/g, '');
+    if (cleanPhone.length === 0) {
+      statusDiv.innerHTML = '⚠️ Please enter a valid phone number (digits only).';
+      statusDiv.style.color = '#b33b2c';
+      return;
+    }
+    
+    // Combine full phone number with country code
+    const fullPhoneNumber = countryCode + cleanPhone;
+    
+    // Create FormData and manually set phone field to combined value
     const formData = new FormData(form);
+    // Remove the individual fields if needed, but we'll add a new 'phone' field
+    formData.delete('phone_number'); // remove the raw phone number input
+    formData.delete('country_code'); // remove the select field
+    formData.append('phone', fullPhoneNumber); // send combined phone with country code
+    
+    // Also ensure name/email remain
     formData.append('botcheck', '');
+    
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -582,6 +675,9 @@
         statusDiv.innerHTML = '✓ Thank you! One of our luxury advisors will contact you within 24h.';
         statusDiv.style.color = '#2a6b2f';
         form.reset();
+        // Reset country code to default +971 after reset
+        countryCodeSelect.value = '+971';
+        phoneNumberInput.value = '';
         setTimeout(() => statusDiv.innerHTML = '', 7000);
       } else {
         statusDiv.innerHTML = '❌ Submission error. Please email us directly.';
