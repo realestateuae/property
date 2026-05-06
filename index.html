@@ -16,7 +16,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #eef5ea;  /* soft light green fallback */
+      background: #eef5ea;
       color: #1a2e1a;
       scroll-behavior: smooth;
     }
@@ -410,9 +410,9 @@
                 <input type="email" name="email" placeholder="investor@example.ae" required>
               </div>
               <div class="input-group">
-                <label>Phone (UAE code +971)</label>
-                <input type="tel" name="phone" placeholder="+971 56 123 4567" pattern="^\+971\s?\d{1,3}\s?\d{4,7}$|^\+971\d{8,11}$" required>
-                <div class="phone-hint">Example: +971 50 123 4567 or +971501234567</div>
+                <label>Phone Number</label>
+                <input type="tel" name="phone" placeholder="+971 50 123 4567 or 0501234567" required>
+                <div class="phone-hint">Enter your phone number (any format is accepted)</div>
               </div>
               <button type="submit" class="submit-btn">✨ Enquire Now →</button>
               <div id="formStatus" class="form-status"></div>
@@ -551,7 +551,7 @@
   });
   if(faqItems.length) faqItems[0].classList.add('active');
 
-  // Web3Forms handling
+  // Web3Forms handling - phone field now accepts any format (no forced pattern validation)
   const form = document.getElementById('leadForm');
   const statusDiv = document.getElementById('formStatus');
 
@@ -560,11 +560,12 @@
     statusDiv.innerHTML = '⏳ Submitting inquiry...';
     statusDiv.style.color = '#2a662a';
     
+    // Phone validation removed - any format is accepted
+    // Simply get the phone value (no format restrictions)
     const phoneField = form.querySelector('input[name="phone"]');
     const phoneVal = phoneField.value.trim();
-    const phonePattern = /^\+971\s?\d{1,3}\s?\d{4,7}$|^\+971\d{8,11}$/;
-    if (!phonePattern.test(phoneVal)) {
-      statusDiv.innerHTML = '⚠️ Please enter valid UAE number starting with +971 (e.g., +971 55 1234567)';
+    if (phoneVal === "") {
+      statusDiv.innerHTML = '⚠️ Please enter your phone number.';
       statusDiv.style.color = '#b33b2c';
       return;
     }
